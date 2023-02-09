@@ -2,6 +2,9 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\2 Dam\Sping Boot\SpringBoot\GestorTareas"/>
+			<item value="D:\2 Dam\Sping Boot\SpringBoot\empleos principal"/>
+			<item value="D:\2 Dam\Sping Boot\SpringBoot\HitoIndividualAccesoDatos"/>
 			<item value="C:\Eclipse\worksapece-sprintboot\empleos"/>
 			<item value="C:\Eclipse\worksapece-sprintboot\empleos principal"/>
 			<item value="C:\Eclipse\worksapece-sprintboot\holamundo"/>
