@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.RubenA.GestorTareas.interfaceService.IUsuarioService;
+import com.RubenA.GestorTareas.interfaces.ITarea;
 import com.RubenA.GestorTareas.interfaces.IUsuario;
+import com.RubenA.GestorTareas.modelo.Tarea;
 import com.RubenA.GestorTareas.modelo.Usuario;
 
 @Service
@@ -15,6 +17,9 @@ public class UsuarioService implements IUsuarioService{
 	
 	@Autowired
 	private IUsuario data;
+	
+	@Autowired
+	private ITarea data_t;
 	
 	@Override
 	public List<Usuario> lista() {
@@ -39,6 +44,14 @@ public class UsuarioService implements IUsuarioService{
 
 	@Override
 	public void delete(int id) {
+		List<Tarea> tareas = (List<Tarea>) data_t.findAll();
+		
+		for (Tarea tarea : tareas) {
+			if (tarea.getId_usuario()== id) {
+				data_t.deleteById(tarea.getId_tarea());
+			}
+		}
+		
 		data.deleteById(id);
 	}
 	

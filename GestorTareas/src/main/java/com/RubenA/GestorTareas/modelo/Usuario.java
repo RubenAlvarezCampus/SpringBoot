@@ -3,6 +3,7 @@ package com.RubenA.GestorTareas.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -64,7 +65,7 @@ public class Usuario {
 	public List<Tarea> getTareas() {
 		return tareas;
 	}
-
+	
 	public void setTareas(ArrayList<Tarea> tareas) {
 		this.tareas = tareas;
 	}

@@ -7,34 +7,31 @@
 </head>
 <body>
 	<div class="container mt-4">
-		<a th:href="@{/admin/add}" class="btn btn-primary">Nuevo</a>
+		<a th:href="@{/tareas/add/}+${ID}" class="btn btn-primary">Nuevo</a>
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Nombre</th>
-					<th scope="col">Contraseña</th>
-					<th scope="col">Tareas</th>
+					<th scope="col">Estado</th>
+					<th scope="col">Usuario</th>
 					<th scope="col">Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="usuario:${usuarios}">
-					<td th:text="${usuario.id_usuario}"></td>
-					<td th:text="${usuario.nombre}"></td>
-					<td th:text="${usuario.password}"></td>
+				<tr th:each="tarea:${tareas}" th:if="${tarea.id_usuario == ID}">
+					<td th:text="${tarea.id_tarea}"></td>
+					<td th:text="${tarea.nombre}"></td>
+					<td th:text="${tarea.estado}"></td>
+					<td th:text="${tarea.id_usuario}"></td>
 					<td>
-						<a th:if="${usuario.id_usuario != 1}" th:href="@{/tareas/}+${usuario.id_usuario}" class="btn btn-warning">Mostar Tareas</a>
-					</td>
-					<td>
-						<a th:if="${usuario.id_usuario != 1}" th:href="@{/admin/update/}+${usuario.id_usuario}" class="btn btn-warning">Editar</a>
-						<a th:if="${usuario.id_usuario != 1}"th:onclick="eliminar([[${usuario.id_usuario}]])" class="btn btn-danger">Eliminar</a>
+						<a th:href="@{/tareas/update/}+${tarea.id_tarea}" class="btn btn-warning">Editar</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-	</div>
-	<script src="funciones.js"></script>
+	</div>.
+	
 	<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

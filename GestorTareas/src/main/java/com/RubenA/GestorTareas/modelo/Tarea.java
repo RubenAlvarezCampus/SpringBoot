@@ -56,7 +56,7 @@ public class Tarea {
 	}
 
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
+	@JoinColumn(name="id_usuario" )
 	public int getId_usuario() {
 		return id_usuario;
 	}
