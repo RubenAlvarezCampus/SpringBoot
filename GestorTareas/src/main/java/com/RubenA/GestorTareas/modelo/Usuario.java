@@ -23,7 +23,7 @@ public class Usuario {
 	private String password;	
 	
 	@OneToMany
-	@JoinColumn(name="id_usuario")
+	@JoinColumn(name="id_usuario", updatable = false)
 	private List<Tarea> tareas;
 	
 	//Constructor
@@ -61,7 +61,6 @@ public class Usuario {
 		this.password = password;
 	}
 
-	@OneToMany(targetEntity=Tarea.class, mappedBy="id_usuario", fetch=FetchType.EAGER)
 	public List<Tarea> getTareas() {
 		return tareas;
 	}

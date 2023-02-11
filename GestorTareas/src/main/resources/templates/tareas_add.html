@@ -8,7 +8,7 @@
 <body>
 	<div class="container mt-4">
 		<div class="col-sm-6" style="margin:auto">
-			<form th:action="@{/tareas/save}" th:object=${tarea} method="POST">
+			<form th:action="@{/tareas/save/}+${cuenta}" th:object=${tarea} method="POST">
 				<div class="card">
 					<div class="card-header"><h2>Nueva Tarea</h2></div>
 					<div class="card-body">
@@ -26,7 +26,8 @@
 						</div>
 						<p>La tarea se creara con el estado pendiente</p>
 					</div>
-					<div class="card-footer">
+					<div class="card-footer" style="text-align: center;">
+						<a th:href="@{/tareas/}+${cuenta}+@{/}+${ID}" class="btn btn-danger">Volver</a>
 						<input type="submit" value="Guardar" class="btn btn-success">
 					</div>
 				</div>

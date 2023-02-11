@@ -40,7 +40,6 @@ public class TareaService implements ITareaService{
 
 	@Override
 	public void delete(int id) {
-		
+		data.deleteById(id);
 	}
-
 }

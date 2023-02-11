@@ -8,6 +8,7 @@
 <body>
 	<div class="container mt-4">
 		<a th:href="@{/admin/add}" class="btn btn-primary">Nuevo</a>
+		<a th:href="@{/}" class="btn btn-primary">Cerrar Seseion</a>
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
@@ -24,11 +25,11 @@
 					<td th:text="${usuario.nombre}"></td>
 					<td th:text="${usuario.password}"></td>
 					<td>
-						<a th:if="${usuario.id_usuario != 1}" th:href="@{/tareas/}+${usuario.id_usuario}" class="btn btn-warning">Mostar Tareas</a>
+						<a th:if="${usuario.id_usuario != 1}" th:href="@{/tareas/admin/}+${usuario.id_usuario}" class="btn bg-success">Tareas</a>
 					</td>
 					<td>
 						<a th:if="${usuario.id_usuario != 1}" th:href="@{/admin/update/}+${usuario.id_usuario}" class="btn btn-warning">Editar</a>
-						<a th:if="${usuario.id_usuario != 1}"th:onclick="eliminar([[${usuario.id_usuario}]])" class="btn btn-danger">Eliminar</a>
+						<a th:if="${usuario.id_usuario != 1} "th:onclick="eliminar([[${usuario.id_usuario}]])" class="btn btn-danger">Eliminar</a>
 					</td>
 				</tr>
 			</tbody>

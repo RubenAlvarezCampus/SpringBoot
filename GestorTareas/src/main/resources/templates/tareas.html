@@ -7,7 +7,9 @@
 </head>
 <body>
 	<div class="container mt-4">
-		<a th:href="@{/tareas/add/}+${ID}" class="btn btn-primary">Nuevo</a>
+		<a th:if="${cuenta == 'admin'}" th:href="@{/admin}" class="btn btn-danger">Volver</a>
+		<a th:href="@{/tareas/add/}+${cuenta}+@{/}+${ID}" class="btn btn-primary">Nuevo</a>
+		<a th:href="@{/}" class="btn btn-primary">Cerrar Seseion</a>
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
@@ -25,13 +27,46 @@
 					<td th:text="${tarea.estado}"></td>
 					<td th:text="${tarea.id_usuario}"></td>
 					<td>
-						<a th:href="@{/tareas/update/}+${tarea.id_tarea}" class="btn btn-warning">Editar</a>
+						<a th:href="@{/tareas/update/}+${cuenta}+@{/}+${tarea.id_tarea}" class="btn btn-warning">Editar</a>
+						<a 	th:if="${cuenta != 'admin'}" 
+							th:onclick="eliminar_tarea([[${tarea.id_tarea}]],[[${tarea.id_usuario}]])" 
+							class="btn btn-danger">Eliminar
+						</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-	</div>.
-	
+	</div>
+	<script>
+	function eliminar_tarea(id,id_user) {
+		swal({
+	        title: "Estas Seguro?",
+	        text: "Si lo eliminas no podras recuperarlo...",
+	        icon: "warning",
+	        buttons: true,
+	        dangerMode: true,
+	    })
+	        .then((OK) => {
+	            if (OK) {
+	                $.ajax({
+	                    url:"/tareas/delete/" + id,
+	                    success: function(res){
+	                        console.log(res);
+	                    }
+	                });
+	                swal("Se ha eliminado correctamente el usuario!", {
+	                    icon: "success",
+	                }).then((ok)=>{
+	                    if(ok){
+	                        location.href="/tareas/user/" + id_user;
+	                    }
+	                });
+	            } else {
+	                swal("No se ha eliminado ningun usuario");
+	            }
+	        });
+}
+	</script>
 	<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
